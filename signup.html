@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <title>Stüssy signup</title>
+            <link rel="shortcut icon" href="./sim.png" type="image/png">
+            <link rel="icon" href="./sim.png" type="image/png">
+            <style>
+                @font-face {
+                    font-family: "stussy";
+                    src:url(./StussyScript-Regular.ttf)
+                }
+                body{
+                    opacity: 0;
+                    transition: opacity 1s ease-in-out;
+                    -ms-overflow-style: none;
+                    background-color: white;
+                }
+    
+                body.loaded {
+                    opacity: 1;
+                }
+                @keyframes blink {
+                    50% { opacity: 0; }
+                }
+    
+                .blink {
+                    animation: blink 1s infinite;
+                }
+    
+                .container{
+                    font-family: 'Courier New', Courier, monospace;
+    
+                    left: 50%; top: 50%;
+                    position: absolute;
+                    transform: translate(-50%, -50%);
+                    width:max-content;
+                    background-color: white;
+                }
+                input{
+                    border: none;
+                    width: 100px;
+                }
+    
+                button{
+                    all: unset;
+                }
+    
+                .stussylogo{
+                    width: 100px;
+                    height: auto;
+                    display: block;
+                    font-family: "stussy";
+                    font-size: 30px;
+                    text-align: center;
+                }
+                .btn{
+                    border-bottom: 1px solid black;
+                    padding: 2px;
+                }
+    
+                .btn:hover{
+                    font-weight: 700;
+                    border-bottom: 2px solid black;
+                }
+                @media (max-width: 1000px) {
+                    body {
+                        font-size: 30px; /* 모바일에서 글꼴 크기 줄이기 */
+                    }
+
+                    .stussylogo {
+                        width: 200px;
+                        font-size: 50px;
+                    }
+                    input{
+                        border: none;
+                        width: 200px;
+                        font-size: 25px;
+                    }
+                }
+            </style>
+            <script>
+                window.addEventListener('load', function() {
+                    document.body.classList.add('loaded');
+                });
+            </script>
+        </head>
+
+        <body>
+            <div class="container">
+                <span style="font-family: stussy; cursor: pointer;" onclick="location.href='index.php'">&lt; back</span>
+                <span class="stussylogo">SIGN UP</span>
+                <br>
+                <form action="./signup.php" method="post">
+                    <div>
+
+                        <input placeholder="ID" type="text" name="id"/>
+                    </div>
+                    <div>
+
+                        <input placeholder="PASSWORD" type="text" name="pw"/>
+                    </div>
+                    <div>
+
+                        <input placeholder="PASSWORD_C" type="text" name="pwc"/>
+                    </div>
+                    <div>
+
+                        <input placeholder="NAME" type="text" name="named"/>
+                    </div>
+                    <div>
+
+                        <input placeholder="EMAIL" type="text" name="email"/>
+                    </div>
+                    <hr style="border : 0px; border-top: 1px dashed;">
+                    <div class="button">
+                        <button class="btn"  type="submit" value="submit">Sign Up!</button>
+                    </div>
+                </form>
+            </div>
+        </body>
+    </html>
