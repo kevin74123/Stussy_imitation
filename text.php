@@ -58,23 +58,36 @@
 
                 .username{
                     font-family: 'Courier New', Courier, monospace;
-                    justify-self: left;
                     width: max-content;
                     position: fixed;
                     text-align: center;
-                    left: 50%;
-                    position: absolute;
-                    transform: translate(-50%);
                     font-family: 'Courier New', Courier, monospace;
-
+                    background: floralwhite;
+                    position: fixed;
+                    top: 100px;
+                    right: -100%; /* 메뉴가 화면 밖에 위치 */
+                    z-index: 2000;
+                    background-color: white;
+                    transition: right 1s ease; /* 부드러운 슬라이드 효과 */
                 }
 
-                .stussylogo{
+                .username.active {
+                    right: 0; /* 메뉴가 화면에 보이도록 */
+                    
+                }
+
+                .stussylogo {
                     width: 100px;
                     height: auto;
                     cursor: pointer;
+                    margin: 0 auto;
+                    
                 }
 
+                .stussylogo img {
+                    max-width: 100%; /* 이미지가 div를 넘지 않도록 설정 */
+                    height: auto; /* 비율 유지 */
+                }
                 .catalog{
                     display: flex;
                 }
@@ -125,20 +138,8 @@
                 #navtext{
                     font-family: 'Courier New', Courier, monospace;
                 }
-                .slide-menu {
-                    position: fixed;
-                    top: 0;
-                    right: -100%; /* 메뉴가 화면 밖에 위치 */
-                    width: 100%;
-                    height: 100%;
-                    z-index: 2000;
-                    background-color: white;
-                    transition: right 0.5s ease; /* 부드러운 슬라이드 효과 */
-                }
-
-                .slide-menu.active {
-                    right: 0; /* 메뉴가 화면에 보이도록 */
-                    
+                .menu span{
+                    cursor: pointer;
                 }
             </style>
 
@@ -172,8 +173,8 @@
                         <img class="logo" src="./images/Stussy-Logo-1.png">
                     </div>
 
-                    <div class="flex-2 text-center text-xs" id="navtext"> <!-- 1/3 영역 -->
-                        <span class="mx-2">home</span>
+                    <div class="menu flex-2 text-center text-xs" id="navtext"> <!-- 1/3 영역 -->
+                        <span onclick="locateindex();" class="mx-2">home</span>
                         <span class="mx-2">new</span>
                         <span class="mx-2" style="text-decoration: underline;">T-shirt</span>
                         <span class="mx-2">hoodie</span>
@@ -183,11 +184,13 @@
                     </div>
                 </div>
 
-                <div class="slide-menu" id="slide-menu2">
-                    <div class="username">
+                <div>
+                    <div class="username" id="slide-menu2">
                         <hr style="border : 0px; border-top: 1px dashed;">
-
-                            <img class="stussylogo" onclick="locateindex();" src="./images/Stussy-Logo-1.png">
+                            <div class="stussylogo">
+                                <img onclick="locateindex();" src="./images/Stussy-Logo-1.png">
+                            </div>
+                            
 
                             Stussy Korea
 
