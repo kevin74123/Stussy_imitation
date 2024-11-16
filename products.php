@@ -19,13 +19,15 @@
 <!DOCTYPE html>
     <html lang="en">
         <head>
+            <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>Stüssy webshop</title>
             <link rel="shortcut icon" href="./images/sim.png" type="image/png">
             <link rel="icon" href="./images/sim.png" type="image/png">
             <style>
-                @font-face {
+                 @font-face {
                     font-family: "stussy";
                     src:url(./StussyScript-Regular.ttf)
                 }
@@ -34,11 +36,11 @@
                     font-family: "stussy";
                     display: none;
                     position: fixed;
-                    font-size: 15px;
+                    font-size: 3vh;
                     cursor: pointer;
                 }
 
-                @media (max-width: 1000px) {
+                @media (max-width: 1600px) {
                     .username{
                         all:unset;
                         display: none;
@@ -67,13 +69,6 @@
                     .blink {
                     animation: blink 1s infinite;
                     }
-                .container{
-                    width: 200px;
-                    left: 50%;
-                    position: absolute;
-                    transform: translate(-50%);
-                    font-family: 'Courier New', Courier, monospace;
-                }
                 .image{
                     width: 200px;
                 }
@@ -84,18 +79,15 @@
                     width: max-content;
                     position: fixed;
                     text-align: center;
+                    font-size: 2vh;
                 }
                 .stussylogo{
-                    width: 100px;
+                    width: 20vh;
                     height: auto;
                     cursor: pointer;
                 }
-                .stussylogo:hover{
-                    width: 120px;
-                }
-
                 .basket{
-                    font-size: 13px;
+                    font-size: 2vh;
                 }
 
                 .catalog{
@@ -133,6 +125,18 @@
                     cursor: pointer;
                 }
 
+                .row{
+                    flex-direction: row-reverse;
+                }
+
+                .container{
+                    float: right;
+                    font-family: 'Courier New', Courier, monospace;
+                }
+                audio, canvas, embed, iframe, img, object, svg, video {
+                    display: unset;
+                    vertical-align: middle;
+                }
             </style>
 
             <script>
@@ -149,6 +153,7 @@
                 function catalogego(){
                     location.href="./catalog.php";
                 }
+
             </script>
             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         </head>
@@ -171,9 +176,9 @@
                         <img class="stussylogo" onclick="locateindex();" src="./images/Stussy-Logo-1.png">
                     </div>
 
-                    <span>Stüssy Korea</span>
+                         Stussy Korea
 
-                    <div style="font-size: 10px;">
+                    <div style=" font-size: 2vh;">
                         user : <?php echo "$id";?>
                     </div>
 
@@ -305,41 +310,47 @@
                 </div>
 
                 <div class="container">
+                    <div class="row">
+                        <?php
 
-                    <?php
+                        $sql = "SELECT * from a";
+                        $ret = mysqli_query($mysqli, $sql);
 
-                    $sql = "SELECT * from a";
-                    $ret = mysqli_query($mysqli, $sql);
+                        while($r1 = mysqli_fetch_array($ret)){
+                            $file_hash = $r1['hashd'];
+                            $file_path = "./files/" . $file_hash; // 파일 경로
 
-                    while($r1 = mysqli_fetch_array($ret)){
-                        $file_hash = $r1['hashd'];
-                        $file_path = "./files/" . $file_hash; // 파일 경로
+                        ?>
+                        <div style="margin: 10px;">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                            
 
-                    ?>
-                        <form class="productform" action="./webshop.php" method="post">
-                            <div>
-                                
-                                <img class="image" src="<?=$file_path?>">
-                                <input type="hidden" name="item" value='<?=$r1[3];?>'>
-                                <input type="hidden" name="price" value='<?=$r1[4];?>'>
-                                <br>
-                                <span style="font-weight: 600;"><?=$r1[3];?></span>
-                                <br>
-                                <span style=""><?=$r1[4];?>₩</span>
-                                <br>
+                            
+                                <form class="productform" action="./webshop.php" method="post">
+                                    <img class="image" src="<?=$file_path?>">
+                                    <input type="hidden" name="item" value='<?=$r1[3];?>'>
+                                    <input type="hidden" name="price" value='<?=$r1[4];?>'>
+                                    <br>
+                                    <span style="font-weight: 600; font-family:'stussy'; "><?=$r1[3];?></span>
+                                    <br>
+                                    <span style=""><?=$r1[4];?>₩</span>
+                                    <br>
 
-                                <div>
-                                    <hr style="border : 0px; border-top: 1px dashed;">
-                                    <span>count:</span> <input type="number" name="num" value="0" min="1" max="5" step="1">
-                                    <button class="btn" type="submit">add</button>
-                                </div>
-                    
+                                    <div>
+                                        <hr style="border : 0px; border-top: 1px dashed;">
+                                        <span>count:</span> <input type="number" name="num" value="0" min="1" max="5" step="1">
+                                        <button class="btn" type="submit">add</button>
+                                    </div>
+                                </form>
                             </div>
-                        </form>
+                        </div>
+                        <?}?>
 
-                    <?}?>
-
+                    </div>
+                
                 </div>
+                
+
                 
             </div>
 
