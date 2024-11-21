@@ -6,14 +6,24 @@
     session_start();
     $mysqli=mysqli_connect("localhost","onlyicanhaveu","swpcb94610!","onlyicanhaveu");
     $id = isset($_SESSION['userid']) ? $_SESSION['userid'] : null;
-    $displayin = 'none';
+    $displayins = 'none';
     if (isset($_SESSION['userid'])) {
         $userId = $_SESSION['userid'];
         if ($userId === 'kevin') {
-            $displayin = 'block';
+            $displayins = 'block';
         }else{
-            $displayin = 'none';
+            $displayins = 'none';
         }
+    }
+
+    $ids=$_SESSION['userid'];
+    if(isset($_SESSION['userid'])){
+        $displayout='inline-flex';
+        $displayin='none';
+    }
+    else{
+        $displayout='none';
+        $displayin='inline-flex';
     }
 ?>
 <!DOCTYPE html>
@@ -24,8 +34,6 @@
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>Stüssy webshop</title>
-            <link rel="shortcut icon" href="./images/sim.png" type="image/png">
-            <link rel="icon" href="./images/sim.png" type="image/png">
 
             <style>
                  @font-face {
@@ -125,7 +133,7 @@
                 }
 
                 .manage{
-                    display: <?php echo $displayin; ?>;
+                    display: <?php echo $displayins; ?>;
                 }
 
                 .additem{
@@ -141,13 +149,23 @@
                 .menu span{
                     cursor: pointer;
                 }
+
+                .li{
+                    display: <?php echo $displayin; ?>;
+                }
+
+                .lo{
+                    display: <?php echo $displayout; ?>;
+                }
             </style>
 
             <script>
                 window.addEventListener('load', function() {
                     document.body.classList.add('loaded');
                 });
-
+                function locatecoloring(){
+                    location.href="./logout.php";
+                }
                 function locateindex(){
                     location.href="./index.php";
                 }
@@ -162,8 +180,6 @@
             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         </head>
 
-
-
         <body onload="disableRightClick(),disableImageDrag()">
 
             <div class="web">
@@ -175,12 +191,12 @@
 
                     <div class="menu flex-2 text-center text-xs" id="navtext"> <!-- 1/3 영역 -->
                         <span onclick="locateindex();" class="mx-2">home</span>
-                        <span class="mx-2">new</span>
                         <span class="mx-2" style="text-decoration: underline;">T-shirt</span>
                         <span class="mx-2">hoodie</span>
                         <span class="mx-2">pants</span>
-                        <span class="mx-2">about</span>
                         <span class="mx-2" id="shoppingbag">receipt</span>
+                        <span class="li" onclick="locatecoloring();">login</span>
+                        <span class="lo" onclick="locatecoloring();">logout</span>
                     </div>
                 </div>
 
@@ -395,7 +411,5 @@
 
             </div>
 
-
-            
         </body>
     </html>

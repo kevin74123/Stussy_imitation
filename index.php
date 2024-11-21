@@ -3,14 +3,14 @@
     $mysqli=mysqli_connect("localhost","onlyicanhaveu","swpcb94610!","onlyicanhaveu");
     $id=$_SESSION['userid'];
     if(isset($_SESSION['userid'])){
-        $displayout='flex';
+        $displayout='inline-flex';
         $displayin='none';
     }
     else{
         $displayout='none';
-        $displayin='flex';
+        $displayin='inline-flex';
     }
-    ?>
+?>
 <!DOCTYPE html>
     <html lang="en">
         <head>
@@ -19,8 +19,8 @@
             <meta name="keywords" content="onlyicanhave, stussy, 노건우, 스투시, 중학생">
             <meta name="description" content="middle school student made Stussy imitation">
             <meta name="robots" content="index, follow">
-            <link rel="shortcut icon" href="./images/sim.png" type="image/png">
-            <link rel="icon" href="./images/sim.png" type="image/png">
+
+            <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
             <style>
                 body{
                     opacity: 0;
@@ -32,9 +32,11 @@
                 body.loaded {
                     opacity: 1;
                 }
+
                 ::-webkit-scrollbar {
                     display: none;
                 }
+
                 .stussylogo{
                     width: 100px;
                     height: auto;
@@ -43,7 +45,6 @@
 
                 .main{
                     font-family: 'Courier New', Courier, monospace;
-                    
                 }
 
                 .logo{
@@ -64,6 +65,7 @@
                 .lo{
                     display: <?php echo $displayout; ?>;
                 }
+
                 .username{
                     display: <?php echo $displayout; ?>;
                 }
@@ -71,14 +73,7 @@
                 .button{
                     cursor: pointer;
                 }
-                .container{
-                    display: block;
-                    left: 50%; top: 50%;
-                    position: absolute;
-                    transform: translate(-50%, -50%);
-                    width: max-content;
-                    background-color: white;
-                }
+
                 @keyframes blink {
                     50% { opacity: 0; }
                     }
@@ -109,7 +104,8 @@
                 window.addEventListener('load', function() {
                     document.body.classList.add('loaded');
                 });
-                function locateshop(){
+
+                function locatetshirt(){
                     location.href="./products.php";
                 }
                 var windowHeight = window.innerHeight;
@@ -119,44 +115,68 @@
         </head>
 
         <body onload="disableRightClick(),disableImageDrag()">
+            <style>
+                .logo{
+                    width: 100px;
+                }
+                #navtext{
+                    font-family: 'Courier New', Courier, monospace;
+                    padding-right: 30px;
+                }
+                .menu span{
+                    cursor: pointer;
+                }
+                .image-container {
+                    max-width: 100%; /* 부모 요소의 최대 너비를 100%로 설정 */
+                    overflow: hidden; /* 넘치는 부분은 숨김 */
+                    margin: 0 auto;                
+                }
+                .responsive-image {
+                    height: 100vh; /* 화면 높이에 맞게 설정 */
+                    width: auto; /* 너비는 자동으로 조정 */
+                    object-fit: cover; /* 비율을 유지하면서 잘라내기 */
+                    margin: 0 auto;
+                }
+            </style>
+            <div class="fixed text-black w-full flex items-center justify-between">
+                <div class="flex-1 text-center"> <!-- 1/3 영역 -->
+                    <img class="logo" src="./images/Stussy-Logo-1.png">
+                </div>
 
-            <div class="container">
-                <script>
-                   
+                <div class="menu flex-2 text-center text-xs" id="navtext"> <!-- 1/3 영역 -->
+                    <div class="other">
 
-                    function setWindowHeight() {
-                        let windowHeight = window.innerHeight;
-                        document.documentElement.style.setProperty('--window-height', `${windowHeight}px`);
-                    }
-                    setWindowHeight();
-                
-                        // 윈도우 리사이즈 시 업데이트
-                        window.addEventListener('resize', setWindowHeight);
-                </script>
-                <div class="logo">
-                    <img class="stussylogo" src="./images/Stussy-Logo-1.png">
-                    <p>stüssy</p>
-                    <div class="button">
-                        <div><span onclick="locateshop();">webshop !</span></div>
+                        <span style="text-decoration: underline;" onclick="locateindex();" class="mx-2">home</span>
+                        <span class="mx-2" onclick="locatetshirt();">T-shirt</span>
+                        <span class="mx-2">hoodie</span>
+                        <span class="mx-2">pants</span>
+                        <span class="li" onclick="locatecoloring();">login<span class="blink">!</span></span>
+                        <span class="lo" onclick="locatecoloring();">logout</span>
+                        
                     </div>
-                    <br>
-                    <div class="main">
-                        <div class="log">
-                            <div class="li" onclick="locatecoloring();">login<span class="blink">!</span></div>
-                            <div class="lo" onclick="locatecoloring();">logout</div>
-                        </div>
-                        <div class="username">
-                            user : <?php echo "$id";?>
-                        </div>
-                    </div>
+                    <style>
+                        #toggle-menu {
+                            display: none; /* 기본적으로 숨김 */
+                            font-size: 50px;
+                        }
+                        .other {
+                            display: flex; /* 기본적으로 보임 */
+                        }
+
+                    </style>
 
                 </div>
-                
             </div>
-            
 
-            
-            
-            
+            <div class="image-container">
+                <img src="./images/Homepage_4.webp" class="responsive-image">
+            </div>
+
+            <hr>
+
+            <div>
+                STUSSY IMITATION 
+            </div>
+
         </body>
     </html>
